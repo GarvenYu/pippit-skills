@@ -14,6 +14,7 @@ pippit-skills 是一组面向 AI Agent 的创作技能包（Skills），通过�
 | 技能                 | 描述 | 脚本                                                                                   |
 |--------------------|------|--------------------------------------------------------------------------------------|
 | **xyq-nest-skill** | Agent-会话技能 — 创建会话、发送生图/生视频消息、上传文件、查询进展、批量下载结果 | `submit_run.py` `get_thread.py` `upload_file.py` `download_results.py` |
+| **xyq-novel-skill** | 漫剧创作技能 — 使用 pippit-cli 提交漫剧任务、上传参考文件、查询进展 | `pippit-cli novel +submit-run` `+get-thread` `+upload-file` |
 
 
 ## 🚀 快速安装
@@ -23,10 +24,14 @@ pippit-skills 是一组面向 AI Agent 的创作技能包（Skills），通过�
 ```bash
 # 交互式选择要安装的技能
 npx skills add Pippit-dev/pippit-skills
-
-# 直接安装指定技能
-npx skills add Pippit-dev/pippit-skills --skill xyq-nest-skill
 ```
+
+直接安装指定技能：
+
+| 技能 | 安装命令 |
+|------|----------|
+| `xyq-nest-skill` | `npx skills add Pippit-dev/pippit-skills --skill xyq-nest-skill` |
+| `xyq-novel-skill` | `npx skills add Pippit-dev/pippit-skills --skill xyq-novel-skill` |
 
 安装完成后，设置环境变量即可使用：
 
@@ -58,16 +63,19 @@ pippit-skills/
 ├── LICENSE                         # MIT License
 ├── README.md                       # 项目说明
 └── skills/
-    └── xyq-nest-skill/
+    ├── xyq-nest-skill/
+    │   ├── SKILL.md                # 技能说明
+    │   ├── README.md               # 项目说明
+    │   ├── .gitignore
+    │   └── scripts/
+    │       ├── _common.py          # 公共模块：配置、API 请求、响应解析
+    │       ├── submit_run.py       # 创建会话 / 发送消息
+    │       ├── get_thread.py       # 查询会话进展
+    │       ├── upload_file.py      # 上传文件到资产库
+    │       └── download_results.py # 批量下载生成结果
+    └── xyq-novel-skill/
         ├── SKILL.md                # 技能说明
-        ├── README.md               # 项目说明
-        ├── .gitignore
-        └── scripts/
-            ├── _common.py          # 公共模块：配置、API 请求、响应解析
-            ├── submit_run.py       # 创建会话 / 发送消息
-            ├── get_thread.py       # 查询会话进展
-            ├── upload_file.py      # 上传文件到资产库
-            └── download_results.py # 批量下载生成结果
+        └── 使用 pippit-cli novel 命令提交和查询漫剧任务
 ```
 
 ## 📄 License
